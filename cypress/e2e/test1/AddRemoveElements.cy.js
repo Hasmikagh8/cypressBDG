@@ -4,9 +4,9 @@ import { LOCATORS } from "../../utils/locators";
 
 describe("Add_Remove_Elements", () => {
   it("Verify the functionality of Add/Remove button", () => {
-    cy.visit("https://the-internet.herokuapp.com");
+    cy.visit('/');
     cy.contains(addRemoveElements.NAMES.contentText).click();
-    cy.url().should("include", addRemoveElements.NAMES.linkName);
+    cy.url().should("include", `/${addRemoveElements.NAMES.add_remove_elements}/`);
     cy.get(basePage.LOCATORS.content).should(
       "contain",
       addRemoveElements.NAMES.contentText
@@ -37,7 +37,7 @@ describe("Add_Remove_Elements", () => {
         .click({multiple:true});   
    };
 
-   // Check button' count
+   // Check buttons count
    cy.get('.example')
    .find(LOCATORS.elements)
    .find(LOCATORS.button).as('deleteBtn');
@@ -52,16 +52,16 @@ describe("Add_Remove_Elements", () => {
     cy.get('@deleteBtn')
      .then ((delBtn)=> {
         expect(delBtn).to.contain(addRemoveElements.NAMES.deleteARE);
-        cy.wrap(delBtn).click({multiple:true});
+        cy.wrap(delBtn).click({multiple:true}, {timeout:2000});// add first before click
      }
     ) ;
 //};
 });
 
   it("Verify that Delete buttons are disappeared after reloading", () => {
-    cy.visit("https://the-internet.herokuapp.com");
+    cy.visit('/');
     cy.contains(addRemoveElements.NAMES.contentText).click();
-    cy.url().should("include", addRemoveElements.NAMES.linkName);
+    cy.url().should("include", addRemoveElements.NAMES.add_remove_elements);
 
     basePage
     .getExample()
@@ -70,8 +70,14 @@ describe("Add_Remove_Elements", () => {
     expect(btn).to.contain(addRemoveElements.NAMES.addElement);
     cy.wrap(btn).click().click().click();
     });
+    cy.get('.example')
+    .find(LOCATORS.elements)
+    .get(LOCATORS.button).its('length').should('eq',4);
 
     cy.reload();
+    cy.get('.example')
+    .find(LOCATORS.elements)
+    .get(LOCATORS.button).its('length').should('eq',1);
 
 });
 
