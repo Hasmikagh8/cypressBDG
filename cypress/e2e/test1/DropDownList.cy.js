@@ -35,7 +35,7 @@ describe ("dropdownList", () => {
             for (let j=1; j<=2; j++) { 
                 if (j!==i) {            
                     cy.get('@selectDropdown').select(i);
-                    cy.get('@selectDropdown').find('option:selected').should('have.text', dropdownList.NAMES.options[`option${i}`]);
+                    cy.get('@selectDropdown').find('option:selected').should('have.text', dropdownList.NAMES.options[`option${i}`]); //Positive case
                     cy.get('@selectDropdown').find('option:selected').should('not.have.text', dropdownList.NAMES.options[`option${j}`]);
                     
                     cy.get('@selectDropdown').get('select option:first').should('be.disabled'); //check the 1-st (default) option is disabled
