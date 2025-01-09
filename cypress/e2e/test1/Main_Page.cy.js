@@ -7,6 +7,6 @@ describe("Main page testing", () => {
     cy.get('a').should('have.attr', 'href')
     .its('length').should('eq',42);
 
-});
+  });
 
 });
