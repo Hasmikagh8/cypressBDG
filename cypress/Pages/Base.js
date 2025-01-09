@@ -16,8 +16,6 @@ class BasePage {
     return cy.get('.example')
   }
 
-
-
 }
 
 export const basePage = new BasePage();
