@@ -1,7 +1,7 @@
 class AddRemoveElements {
   NAMES = {
     contentText: "Add/Remove Elements",
-    linkName:"/add_remove_elements/",
+    add_remove_elements:"add_remove_elements",
     addElement:"Add Element",
     deleteARE: "Delete",
     loopCount:20,
