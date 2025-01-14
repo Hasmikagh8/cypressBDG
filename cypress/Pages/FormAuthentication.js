@@ -1,13 +1,11 @@
-class AddRemoveElements {
+class FormAuthentication {
   NAMES = {
-    contentText: "Add/Remove Elements",
-    linkName:"/add_remove_elements/",
-    addElement:"Add Element",
-    deleteARE: "Delete",
-    loopCount:20,
+    contentText: "Form Authentication",
+    formAuthLinkName:"login",
+    buttonLogin:"Login",
   };
 
   
 }
 
-export const addRemoveElements = new AddRemoveElements();
+export const formAuthentication = new FormAuthentication();
