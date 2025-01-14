@@ -2,7 +2,7 @@ import { disappearingElements } from "../../Pages/DisappearingElements";
 import { basePage } from "../../Pages/Base";
 import { LOCATORS } from "../../utils/locators";
 import { COLORS } from "../../utils/colors";
-import {reloadAndCheck} from  "../../utils/functions";
+import { reloadAndCheck } from "../../utils/functions";
 
 describe("Disappearing_Elements", () => {
   beforeEach(() => {
@@ -38,7 +38,7 @@ describe("Disappearing_Elements", () => {
       .get("li")
       .last()
       .then(($lastItem) => {
-        if ($lastItem.text() === disappearingElements.NAMES.buttons[4] ) {
+        if ($lastItem.text() === disappearingElements.NAMES.buttons[4]) {
           basePage.getExample().get("ul").get("li").should("have.length", 5);
         } else {
           basePage.getExample().get("ul").get("li").should("have.length", 4);
@@ -48,8 +48,6 @@ describe("Disappearing_Elements", () => {
 
   it("reloads until last li is Gallery or retries are exhausted", () => {
     let getGallery = reloadAndCheck(10); // Set a retry limit
-    
-
     reloadAndCheck();
   });
 
@@ -59,15 +57,15 @@ describe("Disappearing_Elements", () => {
       .get("ul")
       .find("li")
       .first()
-      .find('a')
+      .find("a")
       .should("have.css", "color", COLORS.colorsDisappear.red);
     //The color should not be black before hovering, but the test gets black
     basePage
       .getExample()
       .get("ul")
-      .find("li")  
+      .find("li")
       .first()
-      .find('a')
+      .find("a")
       .realHover()
       .should("have.css", "color", COLORS.colorsDisappear.black);
   });
