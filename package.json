@@ -9,6 +9,13 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "cypress": "^13.17.0"
+    "cypress": "^13.17.0",
+    "cypress-dotenv": "^3.0.1",
+    "dotenv": "^16.4.7",
+    "install": "^0.13.0",
+    "npm": "^11.0.0"
+  },
+  "dependencies": {
+    "cypress-real-events": "^1.13.0"
   }
 }
