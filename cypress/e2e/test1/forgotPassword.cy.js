@@ -15,7 +15,7 @@ describe("dropdownList", () => {
     );
   });
 
-  it("Verify Inserting an unique Email and check the value", () => {
+  it("Verify Inserting an unique Email, checking the value and clicking on button", () => {
     cy.visit("/");
     cy.contains(forgotPassword.NAMES.contentText).click();
     basePage.getExample().get("#email").type(emailName);
