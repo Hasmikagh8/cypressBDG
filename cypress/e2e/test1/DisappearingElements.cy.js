@@ -2,6 +2,7 @@ import { disappearingElements } from "../../Pages/DisappearingElements";
 import { basePage } from "../../Pages/Base";
 import { LOCATORS } from "../../utils/locators";
 import { COLORS } from "../../utils/colors";
+import {reloadAndCheck} from  "../../utils/functions";
 
 describe("Disappearing_Elements", () => {
   beforeEach(() => {
@@ -37,7 +38,7 @@ describe("Disappearing_Elements", () => {
       .get("li")
       .last()
       .then(($lastItem) => {
-        if ($lastItem.text() === disappearingElements.NAMES.buttons[4]) {
+        if ($lastItem.text() === disappearingElements.NAMES.buttons[4] ) {
           basePage.getExample().get("ul").get("li").should("have.length", 5);
         } else {
           basePage.getExample().get("ul").get("li").should("have.length", 4);
@@ -46,26 +47,8 @@ describe("Disappearing_Elements", () => {
   });
 
   it("reloads until last li is Gallery or retries are exhausted", () => {
-    let retries = 10; // Set a retry limit
-    function reloadAndCheck() {
-      cy.reload();
-      basePage
-        .getExample()
-        .get("ul")
-        .get("li")
-        .last()
-        .then(($lastLi) => {
-          if (
-            $lastLi.text() !== disappearingElements.NAMES.buttons[4] &&
-            retries > 0
-          ) {
-            retries--;
-            reloadAndCheck(); // Retry reloading and checking
-          } else if (retries === 0) {
-            throw new Error('Max retries reached and last li is not "Gallery"');
-          }
-        });
-    }
+    let getGallery = reloadAndCheck(10); // Set a retry limit
+    
 
     reloadAndCheck();
   });
