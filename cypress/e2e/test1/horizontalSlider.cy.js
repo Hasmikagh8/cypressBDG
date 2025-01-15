@@ -3,9 +3,12 @@ import { basePage } from "../../Pages/Base";
 import { LOCATORS } from "../../utils/locators";
 
 describe("horizontalSlider", () => {
-  it("Verify link and content", () => {
+  beforeEach(() => {
     cy.visit("/");
     cy.contains(horizontalSlider.NAMES.contentText).click();
+  });
+
+  it("Verify link and content", () => {
     cy.url().should("include", `${horizontalSlider.NAMES.horizSliderLinkName}`);
 
     basePage
@@ -19,8 +22,6 @@ describe("horizontalSlider", () => {
   });
 
   it("Verify the deafault, min, max, step values of the slider in html", () => {
-    cy.visit("/");
-    cy.contains(horizontalSlider.NAMES.contentText).click();
     horizontalSlider.getSliderContainer().scrollIntoView().should("be.visible"); //element is visible
 
     horizontalSlider.getSliderValue().then(($span) => {
@@ -41,9 +42,7 @@ describe("horizontalSlider", () => {
       expect(valValue).to.equal("0");
     });
   });
-  it("Verify the min, max, step values of the slider, and that step is done correctly in UI", () => {
-    cy.visit("/");
-    cy.contains(horizontalSlider.NAMES.contentText).click();
+  it("Verify the min, max, step values of the slider, and that step is done correctly in GUI", () => {
     horizontalSlider.getSliderContainer().scrollIntoView().should("be.visible"); //element is visible
 
     // move to 4 and check the value
