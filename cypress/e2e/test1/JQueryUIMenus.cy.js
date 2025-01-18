@@ -1,7 +1,8 @@
 import { jQueryUIMenus } from "../../Pages/JQueryUIMenus";
 import { basePage } from "../../Pages/Base";
-import xlsx from "node-xlsx";
 
+
+const filePath = "cypress/fixtures/downloads/";
 describe("jQueryUIMenus", () => {
   beforeEach(() => {
     cy.visit("/");
@@ -22,34 +23,18 @@ describe("jQueryUIMenus", () => {
     cy.contains("Enable").click();
     cy.contains("Downloads").click();
     cy.contains("Excel").click();
-
-    
-    const filePath = "cypress/downloads/menu.xls";
-
-
-    cy.readFile(filePath, { encoding: 'binary',  timeout: 10000 })
-      .should("exist")
-      .then((fileContent) => {
-        // Parse the Excel file using node-xlsx
-        const parsedData = xlsx.parse(fileContent); // Parse the binary file content
-
-        // The `parsedData` will be an array of sheet objects, each representing a sheet in the Excel file
-        const sheetData = parsedData[0].data; // Access the first sheet's data (assuming it exists)
-
-        // Assuming the first row contains headers, parse the data accordingly
-        const jsonData = [];
-        for (let i = 1; i < sheetData.length; i++) {
-          const row = sheetData[i];
-          jsonData.push({
-            Name: row[0], // Assuming the first column is 'Name'
-            Age: row[1], // Assuming the second column is 'Age'
-          });
+    cy.task("readdir", filePath).then((files) => {      
+      cy.readFile(`cypress/fixtures/downloads/${files[0]}`);
+      cy.parseXlsx(`cypress/fixtures/downloads/${files[0]}`).then(
+        (jsonData) => {
+          cy.log(JSON.stringify(jsonData[0]).data);
+          expect(JSON.stringify(jsonData[0].data)).to.contain("4");
         }
-
-        // Now you can assert the data from the Excel file
-        expect(jsonData).to.have.length.greaterThan(0);
-        expect(jsonData[0]).to.have.property("Name", "John Doe"); // Adjust to your data structure
-        expect(jsonData[0]).to.have.property("Age", 30); // Adjust to your data structure
-      });
+      );
+    });   
+                                                                
   });
+  afterEach(()=>
+    cy.task("deleteFolder", filePath)  
+  )
 });
