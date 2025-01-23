@@ -15,17 +15,9 @@ describe("horizontalSlider", () => {
 
     for (let i = 0; i < 4; i++) {
       cy.contains(statusCodes.NAMES.statusCodes[i]).click();
-      cy.url().should(
-        "include",
-        `${statusCodes.NAMES.statusCodesLinkName}/${statusCodes.NAMES.statusCodes[i]}`
-      );
-      basePage
-        .getExample()
-        .get("h3")
-        .should("contain", statusCodes.NAMES.header);
-      cy.contains(
-        `${statusCodes.NAMES.descSTCodes1}${statusCodes.NAMES.statusCodes[i]}${statusCodes.NAMES.descSTCodes2}`
-      );
+      cy.url().should("include", `${statusCodes.NAMES.statusCodesLinkName}/${statusCodes.NAMES.statusCodes[i]}`);
+      basePage.getExample().get("h3").should("contain", statusCodes.NAMES.header);
+      cy.contains(`${statusCodes.NAMES.descSTCodes1}${statusCodes.NAMES.statusCodes[i]}${statusCodes.NAMES.descSTCodes2}`);
       cy.contains(statusCodes.NAMES.goBack).click();
     }
   });
