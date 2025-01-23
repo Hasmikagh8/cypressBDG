@@ -1,7 +1,7 @@
 import { statusCodes } from "../../Pages/statusCodes";
 import { basePage } from "../../Pages/Base";
 
-describe("horizontalSlider", () => {
+describe("statusCodes", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.contains(statusCodes.NAMES.contentText).click();
