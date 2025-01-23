@@ -47,10 +47,10 @@ describe("dropdownList", () => {
     // clicking on button when e-mail is filled in
     basePage
       .getExample()
-      .get("#form_submit")
+      .get(forgotPassword.LOCATORS.formSubmit)
       .get("i")
-      .should("have.contain", "Retrieve password")
+      .should("have.contain", forgotPassword.NAMES.retrievePassword)
       .click();
-    cy.get("h1").should("contain", "Internal Server Error");
+    cy.get("h1").should("contain", forgotPassword.NAMES.internalServerError);
   });
 });
