@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "cypress-downloadfile": "^1.2.4",
-    "cypress-real-events": "^1.13.0"
+    "cypress-real-events": "^1.13.0",
+    "neat-csv": "^7.0.0",
+    "papaparse": "^5.5.1"
   }
 }
