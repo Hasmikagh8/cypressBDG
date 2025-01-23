@@ -35,7 +35,7 @@ describe("Form Authentication", () => {
     formAuthentication
       .getLoginForm()
       .get("button")
-      .should("have.css", "background-color", COLORS.blue1)
+      .should("have.css", "background-color", COLORS.blueBack)
       .should("contain", " Login")
       .should("have.css", "color", COLORS.white);
 

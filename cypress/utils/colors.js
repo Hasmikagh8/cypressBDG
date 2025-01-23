@@ -8,4 +8,5 @@ export const COLORS = {
     blue1: 'rgb(43, 166, 203)',
     white: 'rgb(255, 255, 255)',
     red1: 'rgb(198, 15, 19)',
+    blueBack:'rgb(43, 166, 203)'
   }

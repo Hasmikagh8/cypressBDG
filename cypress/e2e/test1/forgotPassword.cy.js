@@ -21,11 +21,11 @@ describe("dropdownList", () => {
     basePage
       .getExample()
       .get("#form_submit")
-      .should("have.css", "background-color", COLORS.colorsForgotPass.blueBack)
+      .should("have.css", "background-color", COLORS.blueBack)
       .get("i")
       .should("have.contain", "Retrieve password")
       .should("have.css", "font-style", "italic")
-      .and("have.css", "color", COLORS.colorsForgotPass.white)
+      .and("have.css", "color", COLORS.white)
       .click();
 
     cy.get("h1").should("contain", "Internal Server Error");
