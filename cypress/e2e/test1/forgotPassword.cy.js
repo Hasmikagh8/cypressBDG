@@ -5,7 +5,8 @@ import { COLORS } from "../../utils/colors";
 
 let textName = "";
 const emailName = emailGenerator(10);
-describe("dropdownList", () => {
+
+describe("Forgot password", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.contains(forgotPassword.NAMES.contentText).click();
