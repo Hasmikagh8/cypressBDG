@@ -25,8 +25,9 @@ describe("dropdownList", () => {
       .get("i")
       .should("have.contain", "Retrieve password")
       .should("have.css", "font-style", "italic")
-      .and("have.css", "color", COLORS.colorsForgotPass.white).click();;
-    
+      .and("have.css", "color", COLORS.colorsForgotPass.white)
+      .click();
+
     cy.get("h1").should("contain", "Internal Server Error");
   });
 
